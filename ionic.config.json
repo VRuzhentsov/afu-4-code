@@ -1,0 +1,7 @@
+{
+  "name": "AFU-4-code",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
