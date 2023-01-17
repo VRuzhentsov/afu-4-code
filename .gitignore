@@ -3,7 +3,7 @@
 # dependencies
 /node_modules
 /.pnp
-.pnp.js
+.pnp.*
 
 # testing
 /coverage
@@ -27,3 +27,5 @@ yarn-error.log*
 
 # Optional eslint cache
 .eslintcache
+
+.yarn
