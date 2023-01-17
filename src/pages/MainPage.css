@@ -1,0 +1,6 @@
+.main-number-input {
+    font-size: 3em;
+}
+.main-number-input input::placeholder {
+    color: #ccc;
+}
