@@ -1,15 +1,46 @@
-import {IonButtons, IonContent, IonHeader, IonInput, IonMenuButton, IonPage, IonTitle, IonToolbar} from '@ionic/react';
+import {
+  IonButtons, IonCol,
+  IonContent, IonGrid,
+  IonHeader,
+  IonInput, IonItem,
+  IonLabel, IonList,
+  IonMenuButton,
+  IonPage, IonRow,
+  IonTitle,
+  IonToolbar
+} from '@ionic/react';
 import './MainPage.css';
+import {useContext, useEffect, useState} from "react";
+import DependencyContext from "../contexts/dependencyContext";
+import {ICode} from "../interfaces/ICode";
 
 const MainPage: React.FC = () => {
-  let code = "";
+  const [code, setCode] = useState<string>("");
+  const [items, setItems] = useState<ICode[]>([]);
+  const {codesRepository} = useContext(DependencyContext);
+  const [filteredItems, setFilteredItems] = useState<ICode[]>([]);
+
+  useEffect(() => {
+    const codes = items.filter(item => item.code.includes(code));
+    setFilteredItems(codes);
+  }, [code])
+
+  useEffect(() => {
+    if(items.length) return;
+    const fetchData = async () => {
+      const codes = await codesRepository.getCodes();
+      setItems(codes);
+      setFilteredItems(codes);
+    }
+    fetchData();
+  });
 
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonMenuButton />
+            <IonMenuButton/>
           </IonButtons>
           <IonTitle>Головна</IonTitle>
         </IonToolbar>
@@ -22,17 +53,32 @@ const MainPage: React.FC = () => {
           </IonToolbar>
         </IonHeader>
 
-        {/*<div className="container">*/}
-          <IonInput
-            autofocus
-            placeholder={"Код..."}
-            maxlength={4}
-            max={9999}
-            type="number"
-            class={"main-number-input"}
-            onIonChange={e => code = e.detail.value!}
-          />
-        {/*</div>*/}
+        <IonInput
+          autofocus
+          placeholder={"Код..."}
+          maxlength={4}
+          max={9999}
+          type="number"
+          class={"main-number-input"}
+          onIonChange={e => setCode(e.detail.value!)}
+        />
+
+        <IonList>
+          {filteredItems.map((item, index) => (
+            <IonItem key={item.id}>
+              <IonGrid fixed>
+                <IonRow className="ion-align-items-center ion-text-wrap">
+                  <IonCol size="3">
+                    <IonLabel>{item.code}</IonLabel>
+                  </IonCol>
+                  <IonCol size="5">
+                    <IonLabel>{item.description}</IonLabel>
+                  </IonCol>
+                </IonRow>
+              </IonGrid>
+            </IonItem>
+          ))}
+        </IonList>
       </IonContent>
     </IonPage>
   );
