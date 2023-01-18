@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">AFU-4-code</string>
+    <string name="title_activity_main">AFU-4-code</string>
+    <string name="package_name">com.vruzhentsov.afu4code</string>
+    <string name="custom_url_scheme">com.vruzhentsov.afu4code</string>
+</resources>

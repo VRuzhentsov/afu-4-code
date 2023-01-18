@@ -7,7 +7,7 @@ import {
   IonMenuButton,
   IonPage, IonRow,
   IonTitle,
-  IonToolbar
+  IonToolbar, useIonViewWillEnter
 } from '@ionic/react';
 import './MainPage.css';
 import {useContext, useEffect, useState} from "react";
@@ -25,13 +25,14 @@ const MainPage: React.FC = () => {
     setFilteredItems(codes);
   }, [code])
 
-  useEffect(() => {
-    if(items.length) return;
-    const fetchData = async () => {
-      const codes = await codesRepository.getCodes();
-      setItems(codes);
-      setFilteredItems(codes);
-    }
+  const fetchData = async () => {
+    const codes = await codesRepository.getCodes();
+    setItems(codes);
+    setFilteredItems(codes);
+  }
+
+  useIonViewWillEnter(() => {
+    console.debug("[MainPage] useIonViewWillEnter");
     fetchData();
   });
 

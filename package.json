@@ -1,6 +1,6 @@
 {
   "name": "afu-4-code",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "dependencies": {
     "@capacitor/android": "4.6.1",

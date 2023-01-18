@@ -10,23 +10,24 @@ import {
   IonMenuButton,
   IonPage, IonRow,
   IonTitle,
-  IonToolbar
+  IonToolbar, useIonViewWillEnter
 } from '@ionic/react';
 import {useCallback, useContext, useEffect, useRef, useState} from "react";
 import {ICode} from "../interfaces/ICode";
 import {pencilOutline, saveOutline, addOutline, trashBinOutline} from 'ionicons/icons';
 import DependencyContext from '../contexts/dependencyContext';
-import { v4 } from 'uuid';
+import {v4} from 'uuid';
 
 interface CodesPageProps {
   initialItems: ICode[];
 }
 
 const CodesPage: React.FC<CodesPageProps> = () => {
-  const { codesRepository } = useContext(DependencyContext);
+  const {codesRepository} = useContext(DependencyContext);
   const [addingMode, setAddingMode] = useState<boolean>(false);
-  const [editingMode, setEditingMode] = useState<number|null>(null);
+  const [editingMode, setEditingMode] = useState<number | null>(null);
   const [items, setItems] = useState<ICode[]>([]);
+  const [itemsInit, setItemsInit] = useState<boolean>(false);
   const [code, setCode] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const inputRef = useRef<HTMLIonItemElement>(null);
@@ -38,7 +39,7 @@ const CodesPage: React.FC<CodesPageProps> = () => {
     console.debug("[CodesPage] handleEdit", index);
     setCode(items[index].code);
     setDescription(items[index].description);
-    if(editingMode !== index) {
+    if (editingMode !== index) {
       setEditingMode(index);
     }
   }
@@ -81,10 +82,10 @@ const CodesPage: React.FC<CodesPageProps> = () => {
 
       cancelEdit();
     }
-  }, [editingMode,inputRef,addButtonRef])
+  }, [editingMode, inputRef, addButtonRef])
 
   const createItem = async () => {
-    const newCode: ICode = { id: v4(), code: '', description: ''};
+    const newCode: ICode = {id: v4(), code: '', description: ''};
     await setItems([...items, newCode]);
     codesRepository.createCode(newCode);
     setAddingMode(true);
@@ -95,24 +96,24 @@ const CodesPage: React.FC<CodesPageProps> = () => {
     if (!addingMode) return;
     console.debug("[CodesPage] useEffect addingMode", {addingMode, editingMode, items});
     // condition, which will enter edit mode for last item in the "items" array, if still not entered in it, and if it is still in the adding mode
-    const lastItem = items[items.length-1];
-    if(!lastItem) return;
+    const lastItem = items[items.length - 1];
+    if (!lastItem) return;
     const lastItemIsEmpty = lastItem.code === "" || lastItem.description === "";
-    const lastItemIsBeingEdited = editingMode === items.length-1;
-    if(editingMode === null && !lastItemIsBeingEdited && lastItemIsEmpty) {
-      handleEdit(items.length-1);
-    } else if(editingMode === null && !lastItemIsEmpty) {
+    const lastItemIsBeingEdited = editingMode === items.length - 1;
+    if (editingMode === null && !lastItemIsBeingEdited && lastItemIsEmpty) {
+      handleEdit(items.length - 1);
+    } else if (editingMode === null && !lastItemIsEmpty) {
       setAddingMode(false);
     }
   }, [items, addingMode, editingMode]);
 
-  useEffect(() => {
-    if(items.length) return;
-    console.debug("[CodesPage] useEffect codesRepository.getCodes", {codesRepository});
-    const fetchData = async () => {
-      const codes = await codesRepository.getCodes();
-      setItems(codes);
-    }
+  const fetchData = async () => {
+    const codes = await codesRepository.getCodes();
+    setItems(codes);
+  }
+
+  useIonViewWillEnter(() => {
+    console.debug("[CodesPage] useIonViewWillEnter");
     fetchData();
   });
 
@@ -154,7 +155,9 @@ const CodesPage: React.FC<CodesPageProps> = () => {
                           debounce={100}
                           class="ion-no-padding"
                           value={code}
-                          maxlength={4}
+                          type="number"
+                          max={9999}
+                          min={0}
                           placeholder={"код..."}
                           onIonChange={e => setCode(e.detail.value!)}
                         />
