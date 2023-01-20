@@ -1,6 +1,20 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        debug {
+            storeFile file('D:\\Projects\\afu-4-code\\my-keystore.jks')
+            storePassword keystorepass
+            keyAlias 'myalias'
+            keyPassword keystorepass
+        }
+        release {
+            storeFile file('D:\\Projects\\afu-4-code\\my-keystore.jks')
+            storePassword keystorepass
+            keyAlias 'myalias'
+            keyPassword keystorepass
+        }
+    }
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "com.vruzhentsov.afu4code"
@@ -19,6 +33,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            signingConfig signingConfigs.release
         }
     }
 }
@@ -40,6 +58,7 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
     implementation project(':capacitor-cordova-android-plugins')
 }
+
 
 apply from: 'capacitor.build.gradle'
 
