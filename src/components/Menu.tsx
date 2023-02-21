@@ -11,6 +11,7 @@ import {
 
 import { useLocation } from 'react-router-dom';
 import {
+  downloadOutline,
   list,
   mailOutline,
   mailSharp,
@@ -37,6 +38,12 @@ const appPages: AppPage[] = [
     url: '/Codes',
     iosIcon: paperPlaneOutline,
     mdIcon: list
+  },
+  {
+    title: 'Бекап',
+    url: '/Backup',
+    iosIcon: paperPlaneOutline,
+    mdIcon: downloadOutline
   }
 ];
 

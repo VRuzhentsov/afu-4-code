@@ -4,15 +4,15 @@ android {
     signingConfigs {
         debug {
             storeFile file('D:\\Projects\\afu-4-code\\my-keystore.jks')
-            storePassword keystorepass
+            storePassword System.getenv("KEYSTORE_PASS")
             keyAlias 'myalias'
-            keyPassword keystorepass
+            keyPassword System.getenv("KEYSTORE_PASS")
         }
         release {
             storeFile file('D:\\Projects\\afu-4-code\\my-keystore.jks')
-            storePassword keystorepass
+            storePassword System.getenv("KEYSTORE_PASS")
             keyAlias 'myalias'
-            keyPassword keystorepass
+            keyPassword System.getenv("KEYSTORE_PASS")
         }
     }
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -20,8 +20,8 @@ android {
         applicationId "com.vruzhentsov.afu4code"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "0.0.3"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.

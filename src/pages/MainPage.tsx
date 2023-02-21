@@ -72,8 +72,8 @@ const MainPage: React.FC = () => {
                   <IonCol size="3">
                     <IonLabel>{item.code}</IonLabel>
                   </IonCol>
-                  <IonCol size="5">
-                    <IonLabel>{item.description}</IonLabel>
+                  <IonCol size="9">
+                    <IonLabel text-wrap>{item.description}</IonLabel>
                   </IonCol>
                 </IonRow>
               </IonGrid>

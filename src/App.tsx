@@ -5,6 +5,7 @@ import Menu from './components/Menu';
 import Page from './pages/Page';
 import MainPage from "./pages/MainPage";
 import CodesPage from "./pages/CodesPage";
+import BackupPage from "./pages/Backup";
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -39,6 +40,7 @@ const App: React.FC = () => {
             </Route>
             <Route path="/Main" exact={true} component={MainPage}/>
             <Route path="/Codes" exact={true} component={CodesPage}/>
+            <Route path="/Backup" exact={true} component={BackupPage}/>
             <Route path="/page/:name" exact={true}>
               <Page />
             </Route>

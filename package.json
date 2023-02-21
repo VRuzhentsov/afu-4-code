@@ -1,6 +1,6 @@
 {
   "name": "afu-4-code",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "dependencies": {
     "@capacitor/android": "4.6.1",
@@ -47,6 +47,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "cap:copy:android": "npx cap copy android",
+    "cap:build:android": "ionic capacitor build android",
     "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)'",
     "postinstall": "node postinstall.js",
     "eject": "react-scripts eject"

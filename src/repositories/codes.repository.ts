@@ -14,6 +14,16 @@ export default class CodesRepository {
     return codes || [];
   }
 
+  async setCodes(codes: ICode[]) {
+    await this.storageService.set(this.codesKey, codes);
+  }
+
+  async mergeCodes(codes: ICode[]) {
+    const oldCodes = await this.storageService.get(this.codesKey);
+    const newCodes = [...oldCodes, ...codes];
+    await this.storageService.set(this.codesKey, newCodes);
+  }
+
   async createCode(code: ICode): Promise<void> {
     const codes = await this.getCodes();
     codes.push(code);
