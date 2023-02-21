@@ -9,3 +9,8 @@ export interface IDownloadableData {
 export interface IDownloadableCodes extends IDownloadableData{
   codes: ICode[]
 }
+
+export interface IDownloadableButton {
+  href: string;
+  download: string;
+}

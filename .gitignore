@@ -13,6 +13,7 @@
 
 # Signing application keys
 *.jks
+*.pepk
 
 # misc
 .DS_Store

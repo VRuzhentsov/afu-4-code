@@ -13,29 +13,29 @@ import {
   IonIcon,
   useIonToast
 } from "@ionic/react";
-import {FC, useContext} from "react";
+import {FC, useCallback, useContext} from "react";
 import DependencyContext from "../contexts/dependencyContext";
 import {IDownloadableCodes} from "../interfaces/IDownloadableData";
 import projectPackage from "../../package.json"
 import {ICode} from "../interfaces/ICode.js";
-import {cloudDownloadOutline, cloudUploadOutline} from "ionicons/icons";
+import {cloudDownloadOutline, cloudUploadOutline, shareSocialOutline} from "ionicons/icons";
 
 const BackupPage: FC = () => {
   const {codesRepository, backupService} = useContext(DependencyContext);
   const [present] = useIonToast();
 
-  const prepareCodesToData = async (): Promise<IDownloadableCodes> => {
+  const prepareCodesToData = useCallback(async (): Promise<IDownloadableCodes> => {
     return {
       version: projectPackage.version,
       codes: await codesRepository.getCodes()
     }
-  }
+  }, []);
 
-  const getCodesDataFromSystem = (): Promise<ICode[]> => {
+  const getCodesDataFromSystem = useCallback((): Promise<ICode[]> => {
     return backupService.import();
-  };
+  }, []);
 
-  const onImportReplaceClick = async () => {
+  const onImportReplaceClick = useCallback(async () => {
     const codes: ICode[] = await getCodesDataFromSystem();
     await codesRepository.setCodes(codes);
     present({
@@ -45,9 +45,9 @@ const BackupPage: FC = () => {
       color: "success"
     });
     console.debug("[BackupPage] onImportReplaceClick", {codes});
-  }
+  }, []);
 
-  const onImportAddClick = async () => {
+  const onImportAddClick = useCallback(async () => {
     const codes: ICode[] = await getCodesDataFromSystem();
     await codesRepository.mergeCodes(codes);
     present({
@@ -57,13 +57,19 @@ const BackupPage: FC = () => {
       color: "success"
     });
     console.debug("[BackupPage] onImportAddClick", {codes});
-  }
+  }, []);
 
-  const onExportClick = async () => {
+  const onShareClick = useCallback(async () => {
+    const codesData = await prepareCodesToData()
+    await backupService.share(codesData)
+    console.debug("[BackupPage] onShareClick")
+  }, []);
+
+  const onExportClick = useCallback( async () => {
     const codesData = await prepareCodesToData()
     await backupService.export(codesData)
     console.debug("[BackupPage] onExportClick")
-  }
+  }, []);
 
   return (
     <IonPage>
@@ -102,9 +108,21 @@ const BackupPage: FC = () => {
           </IonRow>
           <IonRow className="ion-justify-content-center">
             <IonCol size="auto">
-              <IonButton size="large" onClick={onExportClick}>
+              <IonButton
+                size="large"
+                onClick={onExportClick}
+                disabled
+                // download={exportDownloadUrl.download}
+                // href={exportDownloadUrl.href}
+              >
                 <IonIcon icon={cloudUploadOutline} />&nbsp;
                 Експорт
+              </IonButton>
+              <IonButton
+                onClick={onShareClick}
+                size="large"
+              >
+                <IonIcon icon={shareSocialOutline} />
               </IonButton>
             </IonCol>
           </IonRow>

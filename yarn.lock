@@ -1562,6 +1562,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@capacitor/filesystem@npm:^4.1.4":
+  version: 4.1.4
+  resolution: "@capacitor/filesystem@npm:4.1.4"
+  peerDependencies:
+    "@capacitor/core": ^4.0.0
+  checksum: 6c1c1b934e6dfb7866f3a7995fd17bfa436b763ad720d249c72f2dc9febe36e7e0f9fb4f2dc1efcba7abd93323227ff002cc0713b1dcab3bcd24c3fe4f30e0f0
+  languageName: node
+  linkType: hard
+
 "@capacitor/haptics@npm:4.1.0":
   version: 4.1.0
   resolution: "@capacitor/haptics@npm:4.1.0"
@@ -1577,6 +1586,15 @@ __metadata:
   peerDependencies:
     "@capacitor/core": ^4.0.0
   checksum: ba73868921816e400054226198eeecc2bcfcc6607c790f0fb7bb9a7eddd45c7bc67a0ade4a8e4ac2a639a6b6d8cf88aac4fbf59ad55eab27139c4d1e9bc45f28
+  languageName: node
+  linkType: hard
+
+"@capacitor/share@npm:^4.1.1":
+  version: 4.1.1
+  resolution: "@capacitor/share@npm:4.1.1"
+  peerDependencies:
+    "@capacitor/core": ^4.0.0
+  checksum: 3356d1719040d92331f4c69e7842fd86820b0bffbbca3d7233b1c69d5518304f2d895944e1b0386ad5995b2592eb8f2c699c7740ab8b1fa30489cae093bc840b
   languageName: node
   linkType: hard
 
@@ -3662,8 +3680,10 @@ __metadata:
     "@capacitor/app": 4.1.1
     "@capacitor/cli": 4.6.1
     "@capacitor/core": 4.6.1
+    "@capacitor/filesystem": ^4.1.4
     "@capacitor/haptics": 4.1.0
     "@capacitor/keyboard": 4.1.0
+    "@capacitor/share": ^4.1.1
     "@capacitor/status-bar": 4.1.1
     "@ionic/react": ^6.0.0
     "@ionic/react-router": ^6.0.0
@@ -3678,6 +3698,7 @@ __metadata:
     "@types/react-router": ^5.1.11
     "@types/react-router-dom": ^5.1.7
     "@types/uuid": ^9.0.0
+    cordova-plugin-ionic: 5.5.3
     history: ^4.9.0
     ionicons: ^6.0.3
     react: ^18.2.0
@@ -4905,6 +4926,15 @@ __metadata:
   version: 0.5.0
   resolution: "cookie@npm:0.5.0"
   checksum: 1f4bd2ca5765f8c9689a7e8954183f5332139eb72b6ff783d8947032ec1fdf43109852c178e21a953a30c0dd42257828185be01b49d1eb1a67fd054ca588a180
+  languageName: node
+  linkType: hard
+
+"cordova-plugin-ionic@npm:5.5.3":
+  version: 5.5.3
+  resolution: "cordova-plugin-ionic@npm:5.5.3"
+  dependencies:
+    typescript: 3.8.3
+  checksum: c0e4c0b42af6b810058860ca5df55610176e2e785545296852a8f3a18e816acea86884bfdbb1a8966f5a7ece0fb2cced55051e8271e885b0c09dbee97cb685a8
   languageName: node
   linkType: hard
 
@@ -12817,6 +12847,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"typescript@npm:3.8.3":
+  version: 3.8.3
+  resolution: "typescript@npm:3.8.3"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 3ef07f997a9a3af80d663cc611be984d3e22df3dc2b5ecfa6cbe7dbd54f1984fa1c679ba67e6a9d36d73ffdbbab88a0fbb58eb30ffc4f748f3a3c28d562b546a
+  languageName: node
+  linkType: hard
+
 "typescript@npm:^4.1.3":
   version: 4.9.4
   resolution: "typescript@npm:4.9.4"
@@ -12824,6 +12864,16 @@ __metadata:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: e782fb9e0031cb258a80000f6c13530288c6d63f1177ed43f770533fdc15740d271554cdae86701c1dd2c83b082cea808b07e97fd68b38a172a83dbf9e0d0ef9
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@3.8.3#~builtin<compat/typescript>":
+  version: 3.8.3
+  resolution: "typescript@patch:typescript@npm%3A3.8.3#~builtin<compat/typescript>::version=3.8.3&hash=c44097"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: fba33b9756bbffcbdc87254af0f491852bac475c1302b570b9c656c10fad9dbe7113975a64beb6035979db555b0fc87fa168734f10bf556f173213c13d371e4e
   languageName: node
   linkType: hard
 
