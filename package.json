@@ -50,8 +50,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "cap:copy:android": "npx cap copy android",
-    "cap:build:android": "ionic capacitor build android",
+    "cap:copy:android": "yarn cap copy android",
+    "cap:build:android": "yarn ionic capacitor build android",
     "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons)/)'",
     "postinstall": "node postinstall.js",
     "eject": "react-scripts eject"
@@ -76,6 +76,7 @@
   },
   "devDependencies": {
     "@capacitor/cli": "4.6.1",
+    "@ionic/cli": "^7.0.1",
     "@types/uuid": "^9.0.0"
   },
   "description": "An Ionic project",
@@ -83,5 +84,5 @@
     "node": ">=18.0.0",
     "yarn": ">=3.0"
   },
-  "packageManager": "yarn@3.3.1"
+  "packageManager": "yarn@3.5.0"
 }
